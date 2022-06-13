@@ -1,5 +1,6 @@
 export const ramens = [
 	{
+		id: 1,
 		titulo: "Shoyu Ramen",
 		descricao: "Quam vulputate dignissim suspendisse in est ante in nibh mauris.",
 		foto: require("/DESK/Repos/ProjetoM03-react/top-ramen-rct/src/assets/images/shoyu-ramen.jpg"),
@@ -9,6 +10,7 @@ export const ramens = [
 		possuiRecheio: true,
 	},
 	{
+		id: 2,
 		titulo: "Tantanmen",
 		descricao: "Quam vulputate dignissim suspendisse in est ante in nibh mauris.",
 		foto: require("/DESK/Repos/ProjetoM03-react/top-ramen-rct/src/assets/images/tantanmen.jpg"),
@@ -18,6 +20,7 @@ export const ramens = [
 		possuiRecheio: true,
 	},
 	{
+		id: 3,
 		titulo: "tonkotsu-ramen",
 		descricao: "Quam vulputate dignissim suspendisse in est ante in nibh mauris.",
 		foto: require("/DESK/Repos/ProjetoM03-react/top-ramen-rct/src/assets/images/tonkotsu-ramen.jpg"),

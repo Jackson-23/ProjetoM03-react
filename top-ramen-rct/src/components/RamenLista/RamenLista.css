@@ -92,13 +92,13 @@
 
   /**************Contador*****************/
 
-  .PaletaListaItem__badge {
+  .RamenListaItem__badge {
     background-color: greenyellow;
-    width: 20px;
+    width: 60px;
     height: 20px;
     text-align: center;
     vertical-align: middle;
-    position: absolute;
+    /*position: absolute;*/
     color: black;
     font-size: .8em;
     display: flex;
