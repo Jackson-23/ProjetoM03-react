@@ -50,7 +50,7 @@
   }
   
   .RamenListaItem__preco {
-    color: darkviolet;
+    color: rgb(179, 0, 211);
   }
   
   .Acoes {
@@ -78,7 +78,7 @@
   }
   
   .Acoes__adicionar {
-    background-color: darkviolet;
+    background-color: rgb(127, 0, 211);
   }
   
   .Acoes__adicionar--preencher {

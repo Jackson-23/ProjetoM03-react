@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./RamenLista.css";
-import { ramens } from "/DESK/Repos/ProjetoM03-react/top-ramen-rct/src/mocks/ramens.js";
+import { ramens } from "../../mocks/ramens.js";
 
 
 function RamenLista() {

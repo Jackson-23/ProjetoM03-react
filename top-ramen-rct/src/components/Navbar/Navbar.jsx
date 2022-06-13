@@ -1,4 +1,4 @@
-import "../RamenLista/RamenLista.css";
+import "./Navbar.css";
 import sacola from "../../assets/icons/sacola.svg";
 import logo from "../../assets/icons/logo.webp";
 
