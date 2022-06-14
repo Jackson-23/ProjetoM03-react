@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./RamenLista.css";
 import { ramens } from "../../mocks/ramens.js";
-import {RamenListaItem} from "../RamenListaItem/RamenListaItem";
+import { RamenListaItem } from "../RamenListaItem/RamenListaItem";
 
 function RamenLista() {
   const [ramenSelecionada, setRamenSelecionada] = useState({});
@@ -23,7 +23,14 @@ function RamenLista() {
   return (
     <div className="RamenLista">
       {ramens.map((ramen, index) => (
-        <RamenListaItem />
+        <RamenListaItem
+          key={`RamenListaItem-${index}`}
+          ramen={ramen}
+          quantidadeSelecionada={ramenSelecionada[index]}
+          index={index}
+          onAdd={index => adicionarItem(index)}
+		    	onRemove={index => removerItem(index)}
+        />
       ))}
     </div>
   );
