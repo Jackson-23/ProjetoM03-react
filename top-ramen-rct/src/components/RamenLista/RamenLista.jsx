@@ -1,9 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./RamenLista.css";
 import { ramens } from "../../mocks/ramens.js";
-import { RamenListaItem } from "../RamenListaItem/RamenListaItem";
+import { RamenListaItem } from "../RamenListaItem/RamenListaItem.jsx";
+import {
+  findAllRamensService,
+  findRamensByIdService,
+  createRamenfunction,
+  updateRamenfunction,
+  deleteRamenfunction
+} from "../../services/ramenService.js";
+
+
+
 
 function RamenLista() {
+  //const [ramens, setRamens] = useState([]);
+
+
   const [ramenSelecionada, setRamenSelecionada] = useState({});
 
   const adicionarItem = (ramenIndex) => {
@@ -19,6 +32,21 @@ function RamenLista() {
     };
     setRamenSelecionada({ ...ramenSelecionada, ...ramen });
   };
+
+
+  /************Get do Service**************/
+  /*const getLista = async () => {
+    const response = await findAllRamensService();
+    console.log(response);
+    setRamens(response);
+  };
+  
+  useEffect( async () => {
+    await getLista();
+  }, []);*/
+
+  //console.log("oiiiiiiiiiiiii")
+/*************************************** */
 
   return (
     <div className="RamenLista">

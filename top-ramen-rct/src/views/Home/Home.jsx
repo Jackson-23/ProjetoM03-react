@@ -1,6 +1,6 @@
-import RamenLista from "../../components/RamenLista/RamenLista";
+import RamenLista from "../../components/RamenLista/RamenLista.jsx";
 import "../Home/Home.css";
-import { Navbar } from "components/Navbar/Navbar";
+import { Navbar } from "components/Navbar/Navbar.jsx";
 
 function Home() {
   return (
