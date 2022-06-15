@@ -5,25 +5,14 @@ import { RamenService } from "../../services/ramenServiceFront.js";
 import RamenDetalhesModal from "components/RamenDetalhesModal/RamenDetalhesModal.jsx";
 import { ActionMode } from "../../constants/index.js";
 
-function RamenLista({ ramenCriada, mode, updateRamen, deleteRamen }) {
+function RamenLista({ ramenCriada, mode, updateRamen, deleteRamen, ramenEditada, ramenRemovida }) {
   const [ramens, setRamens] = useState([]);
 
   const [ramenSelecionada, setRamenSelecionada] = useState({});
 
   const [ramenModal, setRamenModal] = useState(false);
 
-  /****************TEMPORARIO*********************
-  const ramen = {
-    titulo: "Açaí com Leite Condensado",
-    descricao:
-      "Quam vulputate dignissim suspendisse in est ante in nibh mauris.",
-    foto: "assets/images/misso-ramen.jp",
-    preco: 10.0,
-    sabor: "Açaí",
-    recheio: "Leite Condensado",
-    possuiRecheio: true,
-  };
-************************************* */
+
 
   const adicionarItem = (ramenIndex) => {
     const ramen = {
@@ -71,7 +60,7 @@ function RamenLista({ ramenCriada, mode, updateRamen, deleteRamen }) {
 
   useEffect(() => {
     getLista();
-  }, []);
+  }, [ramenEditada, ramenRemovida]);
 
   /*************************************** */
 

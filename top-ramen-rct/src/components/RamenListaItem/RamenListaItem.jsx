@@ -26,12 +26,14 @@ export function RamenListaItem({
 
 
   const badgeAction = (canRender) => {
-    if (canRender) return (<span className="RamenListaItem__tag"> { mode } </span>);
+    if (canRender) return (<span className= {`RamenListaItem__tag ${mode === ActionMode.DELETAR && 'RamenListaItem__tag--deletar'}`}> { mode } </span>);
   }
 
   return (
     <div
-    className={`RamenListaItem ${mode !== ActionMode.NORMAL && 'RamenListaItem--disable'}`}
+    className={`RamenListaItem 
+    ${mode !== ActionMode.NORMAL && 'RamenListaItem--disable'}
+    ${mode === ActionMode.DELETAR && 'RamenListaItem--deletar'}`}
       onClick={() => clickItem(ramen.id)}
       key={`RamenListaItem-${index}`}
     >

@@ -3,9 +3,10 @@ import sacola from "../../assets/icons/sacola.svg";
 import logo from "../../assets/icons/logo.webp";
 import addicon from "../../assets/icons/addicon.png";
 import atticon from "../../assets/icons/atticon.png";
+import delicon from "../../assets/icons/delicon.png";
 import { ActionMode } from "../../constants/index.js";
 
-export function Navbar({ createRamen, updateRamen, mode }) {
+export function Navbar({ createRamen, updateRamen, mode, deleteRamen }) {
   return (
     <div className="Home__header Header">
       <div className="row">
@@ -21,7 +22,9 @@ export function Navbar({ createRamen, updateRamen, mode }) {
         <div className="Header__opcoes Opcoes">
           <button
             type="button"
-            className={`Opcoes__ramen Ramen ${ mode === ActionMode.ATUALIZAR && "Ramen--ativa"}`}
+            className={`Opcoes__ramen Ramen ${
+              mode === ActionMode.ATUALIZAR && "Ramen--ativa"
+            }`}
             onClick={() => updateRamen()}
           >
             <img
@@ -29,6 +32,21 @@ export function Navbar({ createRamen, updateRamen, mode }) {
               width="40px"
               className="Ramen__icone"
               alt="Editar ramen"
+            />
+          </button>
+
+          <button
+            type="button"
+            className={`Opcoes__ramen Ramen ${
+              mode === ActionMode.DELETAR && "Ramen--deletar"
+            }`}
+            onClick={() => deleteRamen()}
+          >
+            <img
+              src={delicon}
+              width="40px"
+              className="Paleta__icone"
+              alt="Deletar paleta"
             />
           </button>
 

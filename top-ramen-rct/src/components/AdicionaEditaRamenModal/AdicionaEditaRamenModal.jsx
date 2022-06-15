@@ -60,7 +60,7 @@ function AdicionaEditaRamenModal({ closeModal, onCreateRamen, mode, ramenToUpdat
 
     const serviceCall = {
       [ActionMode.NORMAL]: () => RamenService.create(ramen),
-      [ActionMode.ATUALIZAR]: () => RamenService.upddateById(ramenToUpdate?.id, ramen),
+      [ActionMode.ATUALIZAR]: () => RamenService.updateById(ramenToUpdate?.id, ramen),
     }
 
     const response = await serviceCall[mode]();

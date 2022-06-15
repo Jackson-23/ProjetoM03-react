@@ -106,3 +106,8 @@
   .Ramen--ativa {
 	background: rgba(148, 0, 211);
   }
+
+
+  .Ramen--deletar {
+	background: rgb(255, 215, 215);
+  }

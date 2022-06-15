@@ -10,8 +10,9 @@ export const RamenService = {
   create: (ramen) => fetch(Api.createRamen(), { method: "POST", body: JSON.stringify(ramen), mode: "cors", headers: {
       "Content-Type": "application/json",
   } }).then(parseTransformItem),
-  updtateById: (id) =>
-    fetch(Api.updateRamenById(id), { method: "PUT" }).then(parseResponse),
+  updateById: (id, ramen) => fetch(Api.updateRamenById(id), { method: "PUT", body: JSON.stringify(ramen), mode: "cors", headers: {
+      "Content-Type": "application/json",
+      } }).then(parseResponse),
   deleteById: (id) =>
     fetch(Api.deleteRamenById(id), { method: "DELETE" }).then(parseResponse),
 };

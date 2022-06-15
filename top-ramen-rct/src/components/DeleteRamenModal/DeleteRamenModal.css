@@ -1,0 +1,39 @@
+.DeletaRamenModal {
+    margin-top: -20px;
+  }
+  
+  .DeletaRamenModal > div {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+  }
+  
+  .DeletaRamenModal__foto {
+    position: absolute;
+    right: 0px;
+    bottom: 10px;
+    width: 80px;
+  }
+  
+  .DeletaRamenModal__confirmar,
+  .DeletaRamenModal__cancelar {
+    border: none;
+    border-radius: 5px;
+    font-family: "Exo", sans-serif;
+    padding: 5px;
+    max-width: 280px;
+    text-align: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 48%;
+    color: white;
+  }
+  
+  .DeletaRamenModal__confirmar {
+    background-color: darkviolet;
+  }
+  
+  .DeletaRamenModal__cancelar {
+    background-color: red;
+  }
