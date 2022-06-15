@@ -67,13 +67,13 @@
   
   @media (max-width: 840px) {
 	.Header {
-	  max-width: 320px;
+	  max-width: 500px;
 	}
   }
   
   @media (max-width: 400px) {
 	.Header {
-	  max-width: 250px;
+	  max-width: 400px;
 	}
   
 	.row {
@@ -92,8 +92,17 @@
   .Ramen {
 	background: none;
 	border: none;
+	transform: translateY(-3px);
+	border-radius: 10px;
+	transition: all .5s;
+	padding: 0;
   }
   
   .Ramen__icone {
 	cursor: pointer;
+	transform: translateY(3px);
+  }
+
+  .Ramen--ativa {
+	background: rgba(148, 0, 211);
   }

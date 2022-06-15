@@ -4,7 +4,7 @@ import { RamenListaItem } from "../RamenListaItem/RamenListaItem.jsx";
 import { RamenService } from "../../services/ramenServiceFront.js";
 import RamenDetalhesModal from "components/RamenDetalhesModal/RamenDetalhesModal.jsx";
 
-function RamenLista({ ramenCriada }) {
+function RamenLista({ ramenCriada, mode }) {
   const [ramens, setRamens] = useState([]);
 
   const [ramenSelecionada, setRamenSelecionada] = useState({});
@@ -68,6 +68,7 @@ function RamenLista({ ramenCriada }) {
     <div className="RamenLista">
       {ramens.map((ramen, index) => (
         <RamenListaItem
+          mode={mode}
           key={`RamenListaItem-${index}`}
           ramen={ramen}
           quantidadeSelecionada={ramenSelecionada[index]}

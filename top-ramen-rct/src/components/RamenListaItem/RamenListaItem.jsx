@@ -1,13 +1,20 @@
 //import { ramens } from "../../mocks/ramens.js";
 //import { useState } from "react";
 import "./RamenListaItem.css";
+import { ActionMode } from "../../constants/index.js";
 
-export function RamenListaItem({ ramen, quantidadeSelecionada, index, onRemove, onAdd, clickItem  }) {
-
-
+export function RamenListaItem({
+  ramen,
+  quantidadeSelecionada,
+  index,
+  onRemove,
+  onAdd,
+  clickItem,
+  mode,
+}) {
   const removeButton = (canRender, index) =>
     Boolean(canRender) && (
-      <button className="Acoes__remover" onClick={() => onRemove(index)}>
+      <button disabled={mode !== ActionMode.NORMAL} className="Acoes__remover" onClick={() => onRemove(index)}>
         remover
       </button>
     );
@@ -17,9 +24,19 @@ export function RamenListaItem({ ramen, quantidadeSelecionada, index, onRemove, 
       <span className="RamenListaItem__badge"> {quantidadeSelecionada} </span>
     );
 
+
+  const badgeAction = (canRender) => {
+    if (canRender) return (<span className="RamenListaItem__tag"> { mode } </span>);
+  }
+
   return (
-    <div className="RamenListaItem" onClick={()=> clickItem(ramen.id)} key={`RamenListaItem-${index}`}>
+    <div
+    className={`RamenListaItem ${mode !== ActionMode.NORMAL && 'RamenListaItem--disable'}`}
+      onClick={() => clickItem(ramen.id)}
+      key={`RamenListaItem-${index}`}
+    >
       {badgeCounter(quantidadeSelecionada, index)}
+      {badgeAction(mode !== ActionMode.NORMAL)}
 
       <div>
         <div className="RamenListaItem__titulo"> {ramen.titulo} </div>
@@ -27,6 +44,7 @@ export function RamenListaItem({ ramen, quantidadeSelecionada, index, onRemove, 
         <div className="RamenListaItem__descricao"> {ramen.descricao} </div>
         <div className="RamenListaItem__acoes Acoes">
           <button
+            disabled={mode !== ActionMode.NORMAL}
             className={`Acoes__adicionar ${
               !quantidadeSelecionada && "Acoes__adicionar--preencher"
             }`}

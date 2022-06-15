@@ -3,9 +3,10 @@
     background: rgba(255, 255, 255, 0.3);
     border-radius: 10px;
     padding: 10px;
-    width: 315px;
+    width: 500px;
     display: flex;
     justify-content: space-around;
+    transition: all 0.5s;
   }
   
   @media (max-width: 400px) {
@@ -14,11 +15,48 @@
       height: 180px;
     }
   }
+
+  .RamenListaItem--disable {
+    box-shadow: 0px 0px 7px rgba(148, 0, 211);
+  }
+  
+  .RamenListaItem--disable,
+  .RamenListaItem--disable .RamenListaItem__preco {
+    color: gray;
+  }
+  
+  .RamenListaItem--disable .RamenListaItem__badge {
+    display: none;
+  }
+  
+  .RamenListaItem--disable img {
+    filter: grayscale(100%);
+  }
+  
+  .RamenListaItem--disable button:disabled {
+    background-color: gray;
+  }
+  
+  .RamenListaItem__tag {
+    background-color: darkviolet !important;
+    color: white !important;
+    font-size: 0.6em;
+    border-radius: 5px;
+    padding: 5px;
+    top: -25px;
+    left: -45px;
+    letter-spacing: 1px;
+    height: 15px;
+    position:relative;
+  }  
+
+
   
   .RamenListaItem > div {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    width: 100%;
   }
   
   .RamenListaItem__titulo {
@@ -29,6 +67,7 @@
   
   .RamenListaItem__descricao {
     font-size: 0.85em;
+    width: 100%;
   }
   
   .RamenListaItem__preco {
@@ -69,7 +108,7 @@
   
   .RamenListaItem__foto {
     height: 150px;
-    margin-right: -60px;
+    margin-right: -5px;
   }
 
   .RamenListaItem {

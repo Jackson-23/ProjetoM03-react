@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import Modal from "components/Modal/Modal";
-import "../AdicionaRamenModal/AdicionaRamenModal.css";
+import "./AdicionaEditaRamenModal.css";
 import RamenService from "../../services/ramenServiceFront.js"
 
-function AdicionaRamenModal({ closeModal, onCreatePaleta }) {
+function AdicionaEditaRamenModal({ closeModal, onCreatePaleta }) {
   const form = {
     preco: "",
     sabor: "",
@@ -62,11 +62,11 @@ function AdicionaRamenModal({ closeModal, onCreatePaleta }) {
 
   return (
     <Modal closeModal={closeModal}>
-      <div className="AdicionaRamenModal">
+      <div className="AdicionaEditaRamenModal">
         <form autocomplete="off">
           <h2> Adicionar ao Cardápio </h2>
           <div>
-            <label className="AdicionaRamenModal__text" htmlFor="preco">
+            <label className="AdicionaEditaRamenModal__text" htmlFor="preco">
               {" "}
               Preco:{" "}
             </label>
@@ -80,7 +80,7 @@ function AdicionaRamenModal({ closeModal, onCreatePaleta }) {
             />
           </div>
           <div>
-            <label className="AdicionaRamenModal__text" htmlFor="sabor">
+            <label className="AdicionaEditaRamenModal__text" htmlFor="sabor">
               {" "}
               Sabor:{" "}
             </label>
@@ -94,7 +94,7 @@ function AdicionaRamenModal({ closeModal, onCreatePaleta }) {
             />
           </div>
           <div>
-            <label className="AdicionaRamenModal__text" htmlFor="recheio">
+            <label className="AdicionaEditaRamenModal__text" htmlFor="recheio">
               {" "}
               Recheio:{" "}
             </label>
@@ -108,7 +108,7 @@ function AdicionaRamenModal({ closeModal, onCreatePaleta }) {
             />
           </div>
           <div>
-            <label className="AdicionaRamenModal__text" htmlFor="descricao">
+            <label className="AdicionaEditaRamenModal__text" htmlFor="descricao">
               {" "}
               Descricao:{" "}
             </label>
@@ -123,13 +123,13 @@ function AdicionaRamenModal({ closeModal, onCreatePaleta }) {
           </div>
           <div>
             <label
-              className="AdicionaRamenModal__text  AdicionaRamenModal__foto-label"
+              className="AdicionaEditaRamenModal__text  AdicionaEditaRamenModal__foto-label"
               htmlFor="foto"
             >
               {!state.foto.length ? "Selecionar Imagem" : state.foto}
             </label>
             <input
-              className=" AdicionaRamenModal__foto"
+              className=" AdicionaEditaRamenModal__foto"
               id="foto"
               type="file"
               accept="image/png, image/gif, image/jpeg"
@@ -140,7 +140,7 @@ function AdicionaRamenModal({ closeModal, onCreatePaleta }) {
           </div>
 
           <button
-            className="AdicionaRamenModal__enviar"
+            className="AdicionaEditaRamenModal__enviar"
             type="button"
             disabled={canDisable}
             onClick={createRamen}
@@ -151,4 +151,4 @@ function AdicionaRamenModal({ closeModal, onCreatePaleta }) {
   );
 }
 
-export default AdicionaRamenModal;
+export default AdicionaEditaRamenModal;
