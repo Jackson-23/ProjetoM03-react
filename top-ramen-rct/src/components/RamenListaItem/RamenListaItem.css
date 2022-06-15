@@ -72,6 +72,9 @@
     margin-right: -60px;
   }
 
+  .RamenListaItem {
+    cursor: pointer;
+  }
   /**************Contador*****************/
 
   .RamenListaItem__badge {

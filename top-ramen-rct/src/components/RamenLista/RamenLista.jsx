@@ -1,23 +1,28 @@
 import { useState, useEffect } from "react";
 import "./RamenLista.css";
-import { ramens } from "../../mocks/ramens.js";
 import { RamenListaItem } from "../RamenListaItem/RamenListaItem.jsx";
-import {
-  findAllRamensService,
-  findRamensByIdService,
-  createRamenfunction,
-  updateRamenfunction,
-  deleteRamenfunction
-} from "../../services/ramenService.js";
+import { RamenService } from "../../services/ramenServiceFront.js";
+import RamenDetalhesModal from "components/RamenDetalhesModal/RamenDetalhesModal.jsx";
 
-
-
-
-function RamenLista() {
-  //const [ramens, setRamens] = useState([]);
-
+function RamenLista({ ramenCriada }) {
+  const [ramens, setRamens] = useState([]);
 
   const [ramenSelecionada, setRamenSelecionada] = useState({});
+
+  const [ramenModal, setRamenModal] = useState(false);
+
+  /****************TEMPORARIO*********************
+  const ramen = {
+    titulo: "Açaí com Leite Condensado",
+    descricao:
+      "Quam vulputate dignissim suspendisse in est ante in nibh mauris.",
+    foto: "assets/images/misso-ramen.jp",
+    preco: 10.0,
+    sabor: "Açaí",
+    recheio: "Leite Condensado",
+    possuiRecheio: true,
+  };
+************************************* */
 
   const adicionarItem = (ramenIndex) => {
     const ramen = {
@@ -33,20 +38,31 @@ function RamenLista() {
     setRamenSelecionada({ ...ramenSelecionada, ...ramen });
   };
 
-
   /************Get do Service**************/
-  /*const getLista = async () => {
-    const response = await findAllRamensService();
-    console.log(response);
+  const getLista = async () => {
+    const response = await RamenService.getLista();
     setRamens(response);
   };
-  
-  useEffect( async () => {
-    await getLista();
-  }, []);*/
 
-  //console.log("oiiiiiiiiiiiii")
-/*************************************** */
+  const getRamenById = async (ramenId) => {
+    const response = await RamenService.getById(ramenId);
+    setRamenModal(response);
+  };
+
+  const adicionaRamenNaLista = (ramen) => {
+    const lista = [...ramens, ramen];
+    setRamens(lista);
+  };
+
+  useEffect(() => {
+    if (ramenCriada) adicionaRamenNaLista(ramenCriada);
+  }, [ramenCriada]);
+
+  useEffect(() => {
+    getLista();
+  }, []);
+
+  /*************************************** */
 
   return (
     <div className="RamenLista">
@@ -56,10 +72,18 @@ function RamenLista() {
           ramen={ramen}
           quantidadeSelecionada={ramenSelecionada[index]}
           index={index}
-          onAdd={index => adicionarItem(index)}
-		    	onRemove={index => removerItem(index)}
+          onAdd={(index) => adicionarItem(index)}
+          onRemove={(index) => removerItem(index)}
+          clickItem={(ramenId) => getRamenById(ramenId)}
         />
       ))}
+
+      {ramenModal && (
+        <RamenDetalhesModal
+          ramen={ramenModal}
+          closeModal={() => setRamenModal(false)}
+        />
+      )}
     </div>
   );
 }

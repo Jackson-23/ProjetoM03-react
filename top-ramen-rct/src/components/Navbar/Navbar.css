@@ -84,3 +84,16 @@
 	  font-size: 1.5em;
 	}
   }
+
+  .Opcoes {
+	display: flex;
+  }
+  
+  .Ramen {
+	background: none;
+	border: none;
+  }
+  
+  .Ramen__icone {
+	cursor: pointer;
+  }

@@ -6,10 +6,28 @@ const RamenContext = {
     updateRamenById: (id) => `${RamenContext.ramenEndpoint()}/update-ramen/${id}`,
     deleteRamenById: (id) => `${RamenContext.ramenEndpoint()}/delete-ramen/${id}`,
   };
+
   
   export const Api = {
-    baseUrl: "/",
-    ...RamenContext,
+    baseUrl: "http://localhost:3050/",
+    ...RamenContext
   };
 
-  export default Api;
+
+
+const RamenContextBack = {
+    ramenEndpoint: () => `/ramens`,
+    ramenLista: () => `${RamenContextBack.ramenEndpoint()}/all-ramens`,
+    ramenById: (id) => `${RamenContextBack.ramenEndpoint()}/one-ramen/${id}`,
+    createRamen: () => `${RamenContextBack.ramenEndpoint()}/create-ramen`,
+    updateRamenById: (id) => `${RamenContextBack.ramenEndpoint()}/update-ramen/${id}`,
+    deleteRamenById: (id) => `${RamenContextBack.ramenEndpoint()}/delete-ramen/${id}`,
+  }
+
+  export const Route = {
+    ...RamenContextBack
+  }
+
+export default Api;
+
+

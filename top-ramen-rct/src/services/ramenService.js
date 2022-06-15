@@ -1,3 +1,5 @@
+import Api from "../helper/Api.js";
+
 import Ramen from '../models/Ramen.js' ;
 const Ramen1 = Ramen;
 
@@ -25,49 +27,3 @@ export const updateRamenfunction = async (id, ramenEdited) => {
 export const deleteRamenfunction = async (id) => {
     return await Ramen1.findByIdAndDelete(id);
 };
-
-
-
-
-
-/****************************************** */
-/*
-import Api from "../helper/Api.js";
-import ramens from "../mocks/ramens.js"
-
-const parseResponse = (response) => response.json();
-
-export const RamenService = {
-  getLista: () =>
-    fetch(Api.ramenLista(), { method: "GET" }).then(parseTransformLista),
-  getById: (id) =>
-    fetch(Api.ramenById(id), { method: "GET" }).then(parseResponse),
-  create: () =>
-    fetch(Api.createramen(), { method: "POST" }).then(parseResponse),
-  updtateById: (id) =>
-    fetch(Api.updateramenById(id), { method: "PUT" }).then(parseResponse),
-  deleteById: (id) =>
-    fetch(Api.deleteramenById(id), { method: "DELETE" }).then(parseResponse),
-};
-
-
-
-
-const transformRamen = (ramen) => {
-  const [sabor, recheio] = ramen.sabor.split(" com ");
-
-  return {
-    ...ramen,
-    id: ramen._id,
-    titulo: ramen.sabor,
-    sabor,
-    ...(recheio && { recheio }),
-    possuiRecheio: Boolean(recheio),
-  };
-};
-
-
-
-const parseTransformLista = (response) =>
-  parseResponse(response).then((ramens) => ramens.map(transformRamen));
-*/

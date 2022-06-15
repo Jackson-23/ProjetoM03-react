@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import routers from './src/routers/RamenRouter.js';
-import Api from "./src/helper/Api.js";
+import Api, { Route } from "./src/helper/Api.js";
 import connectToDatabase from './src/database/database.js';
 import Ramen from "./src/models/Ramen.js";
 import ramens from "./src/mocks/ramens.js";
@@ -22,9 +22,9 @@ app.get('/mocks', function (req, res) {
 });
 
 
-app.get(Api.ramenLista() , async (req, res) =>{ 
+app.get("/2" , async (req, res) =>{ 
   const ramenst = await GetRamens();
-  console.log(Api.ramenLista());
+  console.log();
   res.send(ramenst);
 });
 

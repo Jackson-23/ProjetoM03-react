@@ -2,7 +2,7 @@
 //import { useState } from "react";
 import "./RamenListaItem.css";
 
-export function RamenListaItem({ ramen, quantidadeSelecionada, index, onRemove, onAdd  }) {
+export function RamenListaItem({ ramen, quantidadeSelecionada, index, onRemove, onAdd, clickItem  }) {
 
 
   const removeButton = (canRender, index) =>
@@ -18,7 +18,7 @@ export function RamenListaItem({ ramen, quantidadeSelecionada, index, onRemove, 
     );
 
   return (
-    <div className="RamenListaItem" key={`RamenListaItem-${index}`}>
+    <div className="RamenListaItem" onClick={()=> clickItem(ramen.id)} key={`RamenListaItem-${index}`}>
       {badgeCounter(quantidadeSelecionada, index)}
 
       <div>
