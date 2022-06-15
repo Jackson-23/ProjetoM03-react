@@ -2,14 +2,15 @@ import { useState, useEffect } from "react";
 import Modal from "components/Modal/Modal";
 import "./AdicionaEditaRamenModal.css";
 import RamenService from "../../services/ramenServiceFront.js"
+import {ActionMode} from "../../constants/index.js"
 
-function AdicionaEditaRamenModal({ closeModal, onCreatePaleta }) {
+function AdicionaEditaRamenModal({ closeModal, onCreateRamen, mode, ramenToUpdate, onUpdateRamen }) {
   const form = {
-    preco: "",
-    sabor: "",
-    recheio: "",
-    descricao: "",
-    foto: "",
+    preco: ramenToUpdate?.preco ?? '',
+    sabor: ramenToUpdate?.sabor ?? '',
+    recheio: ramenToUpdate?.recheio ?? '',
+    descricao: ramenToUpdate?.descricao ?? '',
+    foto: ramenToUpdate?.foto ?? '',
   };
 
   const [state, setState] = useState(form);
@@ -26,7 +27,7 @@ function AdicionaEditaRamenModal({ closeModal, onCreatePaleta }) {
       state.descricao.length &&
         state.foto.length &&
         state.sabor.length &&
-        state.preco.length
+        String(state.preco).length
     );
 
     setCanDisable(response);
@@ -39,22 +40,50 @@ function AdicionaEditaRamenModal({ closeModal, onCreatePaleta }) {
 
   //Criar novo Ramen
 
-  const createRamen = async () => {
-    const renomeiaCaminhoFoto = (fotoPath) => fotoPath.split('\\').pop();
+  const handleSend = async () => {
+    const renomeiaCaminhoFoto = (fotoPath) => fotoPath.split('/\\|\//').pop();
 
     const { sabor, recheio, descricao, preco, foto } = state;
 
     const titulo = sabor + (recheio && ' com ' + recheio);
 
-    const paleta = {
+    const ramen = {
+      ...(ramenToUpdate && { _id: ramenToUpdate?.id }),
         sabor: titulo,
         descricao,
         preco,
         foto: `assets/images/${renomeiaCaminhoFoto(foto)}`
     }
 
-    const response = await RamenService.create(paleta);
-    onCreatePaleta(response);
+    /*const response = await RamenService.create(ramen);
+    onCreateramen(response);*/
+
+    const serviceCall = {
+      [ActionMode.NORMAL]: () => RamenService.create(ramen),
+      [ActionMode.ATUALIZAR]: () => RamenService.upddateById(ramenToUpdate?.id, ramen),
+    }
+
+    const response = await serviceCall[mode]();
+
+    const actionResponse = {
+      [ActionMode.NORMAL]: () => onCreateRamen(response),
+      [ActionMode.ATUALIZAR]: () => onUpdateRamen(response),
+    }
+
+    actionResponse[mode]();
+
+    const reset = {
+      preco: '',
+      sabor: '',
+      recheio: '',
+      descricao: '',
+      foto: '',
+    }
+
+    setState(reset);
+
+
+
     closeModal();
 }
 
@@ -64,7 +93,7 @@ function AdicionaEditaRamenModal({ closeModal, onCreatePaleta }) {
     <Modal closeModal={closeModal}>
       <div className="AdicionaEditaRamenModal">
         <form autocomplete="off">
-          <h2> Adicionar ao Cardápio </h2>
+        <h2> { ActionMode.ATUALIZAR === mode ? 'Atualizar' : 'Adicionar ao' } Cardápio </h2>
           <div>
             <label className="AdicionaEditaRamenModal__text" htmlFor="preco">
               {" "}
@@ -133,7 +162,6 @@ function AdicionaEditaRamenModal({ closeModal, onCreatePaleta }) {
               id="foto"
               type="file"
               accept="image/png, image/gif, image/jpeg"
-              value={state.foto}
               onChange={(e) => handleChange(e, "foto")}
               required
             />
@@ -143,8 +171,9 @@ function AdicionaEditaRamenModal({ closeModal, onCreatePaleta }) {
             className="AdicionaEditaRamenModal__enviar"
             type="button"
             disabled={canDisable}
-            onClick={createRamen}
-          >Enviar</button>
+            onClick={handleSend} >
+              { ActionMode.NORMAL === mode ? 'Enviar' : 'Atualizar' }
+            </button>
         </form>
       </div>
     </Modal>

@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import "./RamenLista.css";
 import { RamenListaItem } from "../RamenListaItem/RamenListaItem.jsx";
 import { RamenService } from "../../services/ramenServiceFront.js";
 import RamenDetalhesModal from "components/RamenDetalhesModal/RamenDetalhesModal.jsx";
+import { ActionMode } from "../../constants/index.js";
 
-function RamenLista({ ramenCriada, mode }) {
+function RamenLista({ ramenCriada, mode, updateRamen, deleteRamen }) {
   const [ramens, setRamens] = useState([]);
 
   const [ramenSelecionada, setRamenSelecionada] = useState({});
@@ -46,13 +47,23 @@ function RamenLista({ ramenCriada, mode }) {
 
   const getRamenById = async (ramenId) => {
     const response = await RamenService.getById(ramenId);
-    setRamenModal(response);
+
+    const mapper = {
+      [ActionMode.NORMAL]: () => setRamenModal(response),
+      [ActionMode.ATUALIZAR]: () => updateRamen(response),
+      [ActionMode.DELETAR]: () => deleteRamen(response),
+    };
+
+    mapper[mode]();
   };
 
-  const adicionaRamenNaLista = (ramen) => {
-    const lista = [...ramens, ramen];
-    setRamens(lista);
-  };
+  const adicionaRamenNaLista = useCallback(
+    (ramen) => {
+      const lista = [...ramens, ramen];
+      setRamens(lista);
+    },
+    [ramens]
+  );
 
   useEffect(() => {
     if (ramenCriada) adicionaRamenNaLista(ramenCriada);
